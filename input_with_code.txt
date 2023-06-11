@@ -1,10 +1,10 @@
-model = SARIMAX(train, order=(2, 1, 1), seasonal_loader=(0,0,0,0) )
-fitted = model.fit()
-print(fitted.summary())
-df_forecast = df.copy()
+norm_abalone_model = tf.keras.Sequential([
+  normalize,
+  layers.Dense(64),
+  layers.Dense(1)
+])
 
-df_forecast['temp_forecast'] = fitted.forecast(15, alpha=0.05)  # 95% conf
-df_forecast = df_forecast[~df_forecast['temp_forecast'].isnull()]
-df_forecast.head()
+norm_abalone_model.compile(loss = tf.keras.losses.MeanSquaredError(),
+                           optimizer = tf.keras.optimizers.Adam())
 
-fig, ax = plt.subplots(figsize = (20, 5))
+norm_abalone_model.fit(abalone_features, abalone_labels, epochs=10)

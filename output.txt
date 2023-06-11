@@ -1,5 +1,4 @@
+- TensorFlow
+- Keras
 - NumPy
-- Pandas
 - SciPy
-- Statsmodels
-- Matplotlib
